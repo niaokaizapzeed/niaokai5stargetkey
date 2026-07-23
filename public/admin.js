@@ -34,6 +34,10 @@
     store = r.data.store; keyCounts = r.data.keys || {};
     $('site-name').value = store.site.name || '';
     $('site-logo').value = store.site.logoUrl || '';
+    const b = store.site.banner || {}; $('banner-img').value = b.imageUrl || ''; $('banner-link').value = b.linkUrl || '';
+    const ha = store.site.homeAds || {};
+    $('ha-social').value = ha.socialBar || ''; $('ha-pop').value = ha.popunder || '';
+    $('ha-native').value = ha.nativeSrc || ''; $('ha-nativec').value = ha.nativeContainer || '';
     renderCats(); renderProds();
   }
 
@@ -44,7 +48,16 @@
   }
 
   // ---- site ----
-  $('save-site').onclick = () => { store.site.name = $('site-name').value.trim() || 'CHECKEN5STAR'; store.site.logoUrl = $('site-logo').value.trim(); saveStore('บันทึกตั้งค่าเว็บแล้ว'); };
+  $('save-site').onclick = () => {
+    store.site.name = $('site-name').value.trim() || 'CHECKEN5STAR';
+    store.site.logoUrl = $('site-logo').value.trim();
+    store.site.banner = { imageUrl: $('banner-img').value.trim(), linkUrl: $('banner-link').value.trim() };
+    store.site.homeAds = {
+      socialBar: $('ha-social').value.trim(), popunder: $('ha-pop').value.trim(),
+      nativeSrc: $('ha-native').value.trim(), nativeContainer: $('ha-nativec').value.trim(),
+    };
+    saveStore('บันทึกตั้งค่าเว็บแล้ว');
+  };
 
   // ---- categories ----
   function renderCats() {
@@ -92,6 +105,7 @@
     $('pm-name').value = p ? p.title : '';
     $('pm-slug').value = p ? p.slug : '';
     $('pm-yt').value = p ? (p.youtube || '') : '';
+    $('pm-img').value = p ? (p.imageUrl || '') : '';
     $('pm-desc').value = p ? (p.description || '') : '';
     $('pm-cat').value = p ? p.category : (store.categories[0] && store.categories[0].id) || '';
     $('pm-cp').value = p ? (p.checkpoints || 4) : 4;
@@ -109,6 +123,7 @@
     if (!slug) return toast('ใส่ slug (a-z 0-9 -)', true);
     const data = {
       title: $('pm-name').value.trim(), slug, youtube: $('pm-yt').value.trim(),
+      imageUrl: $('pm-img').value.trim(),
       description: $('pm-desc').value, category: $('pm-cat').value,
       checkpoints: parseInt($('pm-cp').value, 10) || 4, cooldown: parseInt($('pm-cd').value, 10) || 0,
       ads: { directLink: $('pm-ad-direct').value.trim(), socialBar: $('pm-ad-social').value.trim(), popunder: $('pm-ad-pop').value.trim(), nativeSrc: $('pm-ad-native').value.trim(), nativeContainer: $('pm-ad-nativec').value.trim() },

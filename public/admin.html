@@ -35,7 +35,18 @@
   <div class="sec">
     <h2>ตั้งค่าเว็บ</h2>
     <label>ชื่อเว็บ</label><input id="site-name"/>
-    <label>URL โลโก้ (เว้นว่างได้)</label><input id="site-logo" placeholder="https://..."/>
+    <label>URL โลโก้ (แนะนำ .png พื้นหลังโปร่งใส)</label><input id="site-logo" placeholder="https://..."/>
+
+    <h2 style="margin-top:22px">แบนเนอร์บนหน้าหลัก (คลิกได้)</h2>
+    <label>URL รูปแบนเนอร์</label><input id="banner-img" placeholder="https://.../banner.png"/>
+    <label>ลิงก์ที่จะเปิดเมื่อกดแบนเนอร์ (เว้นว่าง = ไม่กระโดดไปไหน)</label><input id="banner-link" placeholder="https://..."/>
+
+    <h2 style="margin-top:22px">โฆษณาในหน้าหลัก (เว้นว่างช่องไหน = ไม่ใช้)</h2>
+    <label>Social Bar — src</label><input id="ha-social"/>
+    <label>Popunder — src</label><input id="ha-pop"/>
+    <label>Native Banner — src ของ invoke.js</label><input id="ha-native"/>
+    <label>Native Banner — container id</label><input id="ha-nativec"/>
+
     <button id="save-site" class="ab ab-red">บันทึกตั้งค่าเว็บ</button>
   </div>
 
@@ -61,7 +72,8 @@
   <input type="hidden" id="pm-id"/>
   <label>ชื่อสินค้า (Title)</label><input id="pm-name"/>
   <label>URL (slug) — a-z 0-9 - เท่านั้น เช่น proxy-uid</label><input id="pm-slug" placeholder="proxy-uid"/>
-  <label>ลิงก์ YouTube</label><input id="pm-yt" placeholder="https://www.youtube.com/watch?v=..."/>
+  <label>ลิงก์ YouTube (เว้นว่างได้ถ้าใช้รูปแทน)</label><input id="pm-yt" placeholder="https://www.youtube.com/watch?v=..."/>
+  <label>URL รูปภาพ (ใช้แทนคลิป — ถ้าใส่ทั้งคู่ จะแสดง "รูป")</label><input id="pm-img" placeholder="https://.../image.png"/>
   <label>คำอธิบาย</label><textarea id="pm-desc" style="font-family:inherit"></textarea>
   <label>หมวดหมู่</label><select id="pm-cat"></select>
   <div class="row">

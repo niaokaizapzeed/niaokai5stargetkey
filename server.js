@@ -107,6 +107,7 @@ function seedStore() {
     id: genId(), slug: 'proxy-uid', title: 'PROXY UID [Free Fire]',
     description: 'ตัวอย่างสินค้า — แก้ข้อความนี้ในหน้า /admin\nรองรับ Android',
     youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    imageUrl: '',
     category: 'android', checkpoints: 4, cooldown: 15,
     ads: { directLink: '', socialBar: '', popunder: '', nativeSrc: '', nativeContainer: '' },
     createdAt: Date.now(),
@@ -194,7 +195,8 @@ app.get('/api/product/:slug', (req, res) => {
 });
 
 function publicProduct(p) {
-  return { slug: p.slug, title: p.title, description: p.description || '', youtube: p.youtube || '',
+  return { slug: p.slug, title: p.title, description: p.description || '',
+    youtube: p.youtube || '', imageUrl: p.imageUrl || '',
     category: p.category || '', remaining: (stocks[p.id] || []).length };
 }
 

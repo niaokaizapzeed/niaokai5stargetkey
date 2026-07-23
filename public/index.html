@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>CHECKEN5STAR</title>
+<script src="/ads.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
@@ -20,14 +21,20 @@
   <span class="spacer"></span>
 </header>
 
-<nav class="cats" id="cats"></nav>
+<!-- clickable banner (image + link, from admin) -->
+<div class="banner" id="banner-wrap"></div>
 
 <section class="hero">
   <h1 id="hero-title">ยินดีต้อนรับ</h1>
-  <p id="hero-sub">เลือกสินค้าที่ต้องการ กดดูคลิป แล้วกด Get Key เพื่อรับคีย์</p>
+  <p id="hero-sub">เลือกสินค้าที่ต้องการ กด Get Key เพื่อรับคีย์</p>
 </section>
 
 <main class="wrap">
+  <aside class="sidebar">
+    <h4>หมวดหมู่</h4>
+    <div class="cats-vert" id="cats"></div>
+    <div class="home-ad" id="home-ad-slot"></div>
+  </aside>
   <div class="grid" id="grid"><p class="empty">กำลังโหลด…</p></div>
 </main>
 
