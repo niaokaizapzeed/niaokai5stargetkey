@@ -1,16 +1,11 @@
 {
-  "name": "checkpoint-key-system",
-  "version": "1.0.0",
-  "description": "Adsterra checkpoint key system with ad-block detection, sequential checkpoints, file-based key stock, and anti-bot protection.",
+  "name": "checken5star",
+  "version": "2.0.0",
+  "description": "Key distribution platform: catalog + per-product checkpoint/ad gate + admin CMS.",
   "main": "server.js",
   "type": "commonjs",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
-  },
-  "engines": {
-    "node": ">=18"
-  },
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",

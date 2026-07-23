@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex"/>
+<title>Admin — CHECKEN5STAR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div class="red-glow"></div>
+<header class="topbar">
+  <a class="brand" href="/"><span class="logo fallback">◉</span><b>ADMIN</b></a>
+  <span class="spacer"></span>
+  <button id="logout" class="ab ab-ghost ab-sm hidden" style="margin-top:0">ออกจากระบบ</button>
+</header>
+
+<!-- LOGIN -->
+<section id="login" class="stage hidden">
+  <div class="pcard" style="text-align:left">
+    <h2 style="text-align:center">เข้าสู่ระบบหลังบ้าน</h2>
+    <label>Username</label><input id="u" autocomplete="username"/>
+    <label>Password</label><input id="p" type="password" autocomplete="current-password"/>
+    <button id="login-btn" class="btn btn-primary">เข้าสู่ระบบ</button>
+    <p id="login-err" class="error hidden"></p>
+  </div>
+</section>
+
+<!-- PANEL -->
+<section id="panel" class="admin hidden">
+  <h1>ระบบหลังบ้าน</h1>
+
+  <div class="sec">
+    <h2>ตั้งค่าเว็บ</h2>
+    <label>ชื่อเว็บ</label><input id="site-name"/>
+    <label>URL โลโก้ (เว้นว่างได้)</label><input id="site-logo" placeholder="https://..."/>
+    <button id="save-site" class="ab ab-red">บันทึกตั้งค่าเว็บ</button>
+  </div>
+
+  <div class="sec">
+    <h2>หมวดหมู่</h2>
+    <div id="cat-list" class="plist"></div>
+    <div class="row" style="margin-top:12px">
+      <input id="new-cat" placeholder="ชื่อหมวดหมู่ใหม่ เช่น EMULATOR"/>
+      <button id="add-cat" class="ab ab-ghost" style="flex:0 0 auto">+ เพิ่มหมวดหมู่</button>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>สินค้า</h2>
+    <div id="prod-list" class="plist"></div>
+    <button id="add-prod" class="ab ab-red">+ เพิ่มสินค้า</button>
+  </div>
+</section>
+
+<!-- PRODUCT MODAL -->
+<div id="prod-modal" class="modal"><div class="box">
+  <h3 id="pm-title">เพิ่มสินค้า</h3>
+  <input type="hidden" id="pm-id"/>
+  <label>ชื่อสินค้า (Title)</label><input id="pm-name"/>
+  <label>URL (slug) — a-z 0-9 - เท่านั้น เช่น proxy-uid</label><input id="pm-slug" placeholder="proxy-uid"/>
+  <label>ลิงก์ YouTube</label><input id="pm-yt" placeholder="https://www.youtube.com/watch?v=..."/>
+  <label>คำอธิบาย</label><textarea id="pm-desc" style="font-family:inherit"></textarea>
+  <label>หมวดหมู่</label><select id="pm-cat"></select>
+  <div class="row">
+    <div><label>จำนวน Checkpoint</label><input id="pm-cp" type="number" value="4" min="1" max="12"/></div>
+    <div><label>เวลารอ/ด่าน (วินาที)</label><input id="pm-cd" type="number" value="15" min="0" max="600"/></div>
+  </div>
+  <label>Adsterra Direct Link (ปุ่ม checkpoint เปิดลิงก์นี้)</label><input id="pm-ad-direct" placeholder="https://www.effectivecpmnetwork.com/..."/>
+  <label>Social Bar — src ของสคริปต์</label><input id="pm-ad-social" placeholder="https://plXXXX.effectivecpmnetwork.com/.../invoke.js หรือ .js"/>
+  <label>Popunder — src ของสคริปต์</label><input id="pm-ad-pop"/>
+  <label>Native Banner — src ของ invoke.js</label><input id="pm-ad-native"/>
+  <label>Native Banner — container id (ตัวเลข/ตัวอักษรหลัง container-)</label><input id="pm-ad-nativec"/>
+  <div style="display:flex;gap:10px;margin-top:16px">
+    <button id="pm-save" class="ab ab-red" style="margin-top:0">บันทึก</button>
+    <button id="pm-cancel" class="ab ab-ghost" style="margin-top:0">ยกเลิก</button>
+  </div>
+</div></div>
+
+<!-- KEYS MODAL -->
+<div id="keys-modal" class="modal"><div class="box">
+  <h3>สต็อกคีย์ — <span id="km-title"></span></h3>
+  <input type="hidden" id="km-id"/>
+  <p class="muted" style="font-size:13px">1 บรรทัด = 1 คีย์ · คงเหลือ <b id="km-count">0</b> คีย์ · ระบบจะตัดคีย์ที่จ่ายไปแล้วออกให้อัตโนมัติ</p>
+  <textarea id="km-keys" style="min-height:200px"></textarea>
+  <div style="display:flex;gap:10px;margin-top:14px">
+    <button id="km-save" class="ab ab-red" style="margin-top:0">บันทึกคีย์</button>
+    <button id="km-cancel" class="ab ab-ghost" style="margin-top:0">ปิด</button>
+  </div>
+</div></div>
+
+<div id="toast" class="toast"></div>
+<script src="/admin.js"></script>
+</body>
+</html>
