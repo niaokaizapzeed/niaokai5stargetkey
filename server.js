@@ -55,8 +55,16 @@ function defaultStore() {
   return {
     site: {
       name: 'CHECKEN5STAR', logoUrl: '',
+      description: 'เว็บแจกคีย์ฟรี',
       banner: { imageUrl: '', linkUrl: '' },
       homeAds: { socialBar: '', popunder: '', nativeSrc: '', nativeContainer: '' },
+      shortcuts: [
+        { imageUrl: '', linkUrl: '', label: 'ปุ่ม 1' },
+        { imageUrl: '', linkUrl: '', label: 'ปุ่ม 2' },
+        { imageUrl: '', linkUrl: '', label: 'ปุ่ม 3' },
+        { imageUrl: '', linkUrl: '', label: 'ปุ่ม 4' },
+      ],
+      socialLinks: { discord: '', youtube: '', facebook: '', tiktok: '' },
     },
     categories: [
       { id: 'ios', name: 'IOS' },
