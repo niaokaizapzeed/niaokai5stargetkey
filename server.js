@@ -53,7 +53,11 @@ let claimed = {};         // sid -> { slug, key }
 
 function defaultStore() {
   return {
-    site: { name: 'CHECKEN5STAR', logoUrl: '' },
+    site: {
+      name: 'CHECKEN5STAR', logoUrl: '',
+      banner: { imageUrl: '', linkUrl: '' },
+      homeAds: { socialBar: '', popunder: '', nativeSrc: '', nativeContainer: '' },
+    },
     categories: [
       { id: 'ios', name: 'IOS' },
       { id: 'android', name: 'ANDROID' },
@@ -66,6 +70,8 @@ function loadStore() {
   try { store = JSON.parse(fs.readFileSync(STORE_FILE, 'utf8')); }
   catch { store = defaultStore(); saveStore(); }
   if (!store.site) store.site = defaultStore().site;
+  if (!store.site.banner)   store.site.banner = { imageUrl: '', linkUrl: '' };
+  if (!store.site.homeAds)  store.site.homeAds = { socialBar: '', popunder: '', nativeSrc: '', nativeContainer: '' };
   if (!Array.isArray(store.categories)) store.categories = [];
   if (!Array.isArray(store.products)) store.products = [];
 }
