@@ -78,8 +78,11 @@ function loadStore() {
   try { store = JSON.parse(fs.readFileSync(STORE_FILE, 'utf8')); }
   catch { store = defaultStore(); saveStore(); }
   if (!store.site) store.site = defaultStore().site;
-  if (!store.site.banner)   store.site.banner = { imageUrl: '', linkUrl: '' };
-  if (!store.site.homeAds)  store.site.homeAds = { socialBar: '', popunder: '', nativeSrc: '', nativeContainer: '' };
+  if (!store.site.banner)      store.site.banner = { imageUrl: '', linkUrl: '' };
+  if (!store.site.homeAds)     store.site.homeAds = { socialBar: '', popunder: '', nativeSrc: '', nativeContainer: '' };
+  if (!store.site.description) store.site.description = '';
+  if (!Array.isArray(store.site.shortcuts)) store.site.shortcuts = [];
+  if (!store.site.socialLinks) store.site.socialLinks = { discord: '', youtube: '', facebook: '', tiktok: '' };
   if (!Array.isArray(store.categories)) store.categories = [];
   if (!Array.isArray(store.products)) store.products = [];
 }
@@ -182,6 +185,15 @@ app.get('/health', (_r, res) => res.json({ status: 'ok', products: store.product
 // ---------------------------------------------------------------------------
 app.get('/api/config', (_r, res) => res.json({ turnstile: { enabled: TURNSTILE_ENABLED, siteKey: TURNSTILE_SITE_KEY } }));
 app.get('/api/site', (_r, res) => res.json({ site: store.site, categories: store.categories }));
+
+app.get('/api/stats', (_r, res) => {
+  const totalProducts = store.products.length;
+  const totalStock = store.products.reduce((n, p) => n + (stocks[p.id] || []).length, 0);
+  const totalCategories = store.categories.length;
+  let totalClaimed = 0;
+  try { totalClaimed = Object.keys(claimed).length; } catch {}
+  res.json({ products: totalProducts, stock: totalStock, categories: totalCategories, claimed: totalClaimed });
+});
 
 app.get('/api/products', (req, res) => {
   const cat = req.query.category;

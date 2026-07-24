@@ -35,13 +35,21 @@
   <div class="sec">
     <h2>ตั้งค่าเว็บ</h2>
     <label>ชื่อเว็บ</label><input id="site-name"/>
-    <label>URL โลโก้ (แนะนำ .png พื้นหลังโปร่งใส)</label><input id="site-logo" placeholder="https://..."/>
+    <label>คำอธิบายเว็บ</label><textarea id="site-desc" style="font-family:inherit;min-height:60px"></textarea>
+    <label>URL โลโก้ (.png พื้นหลังโปร่งใส)</label><input id="site-logo" placeholder="https://..."/>
 
     <h2 style="margin-top:22px">แบนเนอร์บนหน้าหลัก (คลิกได้)</h2>
-    <label>URL รูปแบนเนอร์</label><input id="banner-img" placeholder="https://.../banner.png"/>
-    <label>ลิงก์ที่จะเปิดเมื่อกดแบนเนอร์ (เว้นว่าง = ไม่กระโดดไปไหน)</label><input id="banner-link" placeholder="https://..."/>
+    <label>URL รูปแบนเนอร์</label><input id="banner-img"/>
+    <label>ลิงก์ที่จะเปิดเมื่อกดแบนเนอร์</label><input id="banner-link"/>
 
-    <h2 style="margin-top:22px">โฆษณาในหน้าหลัก (เว้นว่างช่องไหน = ไม่ใช้)</h2>
+    <h2 style="margin-top:22px">ปุ่มลัด 4 ปุ่ม (shortcut buttons — เว้นว่าง URL รูป = ไม่โชว์)</h2>
+    <div id="shortcut-fields"></div>
+
+    <h2 style="margin-top:22px">โซเชียลมีเดีย (แสดงใน footer)</h2>
+    <div class="row"><div><label>Discord</label><input id="sl-discord"/></div><div><label>YouTube</label><input id="sl-youtube"/></div></div>
+    <div class="row"><div><label>Facebook</label><input id="sl-facebook"/></div><div><label>TikTok</label><input id="sl-tiktok"/></div></div>
+
+    <h2 style="margin-top:22px">โฆษณาในหน้าหลัก</h2>
     <label>Social Bar — src</label><input id="ha-social"/>
     <label>Popunder — src</label><input id="ha-pop"/>
     <label>Native Banner — src ของ invoke.js</label><input id="ha-native"/>

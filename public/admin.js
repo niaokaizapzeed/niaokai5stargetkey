@@ -33,11 +33,16 @@
     if (!r.ok) { toast('โหลดข้อมูลไม่ได้', true); return; }
     store = r.data.store; keyCounts = r.data.keys || {};
     $('site-name').value = store.site.name || '';
+    $('site-desc').value = store.site.description || '';
     $('site-logo').value = store.site.logoUrl || '';
     const b = store.site.banner || {}; $('banner-img').value = b.imageUrl || ''; $('banner-link').value = b.linkUrl || '';
     const ha = store.site.homeAds || {};
     $('ha-social').value = ha.socialBar || ''; $('ha-pop').value = ha.popunder || '';
     $('ha-native').value = ha.nativeSrc || ''; $('ha-nativec').value = ha.nativeContainer || '';
+    const sl = store.site.socialLinks || {};
+    $('sl-discord').value = sl.discord || ''; $('sl-youtube').value = sl.youtube || '';
+    $('sl-facebook').value = sl.facebook || ''; $('sl-tiktok').value = sl.tiktok || '';
+    renderShortcutFields();
     renderCats(); renderProds();
   }
 
@@ -48,14 +53,36 @@
   }
 
   // ---- site ----
+  function renderShortcutFields() {
+    const w = $('shortcut-fields'); w.innerHTML = '';
+    const sc = store.site.shortcuts || [{},{},{},{}];
+    while (sc.length < 4) sc.push({});
+    sc.slice(0, 4).forEach((s, i) => {
+      w.innerHTML += `<div class="row" style="margin-top:8px">
+        <div><label>ปุ่ม ${i+1} — URL รูป</label><input id="sc-img-${i}" value="${esc(s.imageUrl||'')}"/></div>
+        <div><label>ลิงก์เปิดเมื่อกด</label><input id="sc-link-${i}" value="${esc(s.linkUrl||'')}"/></div>
+      </div>`;
+    });
+  }
+
   $('save-site').onclick = () => {
     store.site.name = $('site-name').value.trim() || 'CHECKEN5STAR';
+    store.site.description = $('site-desc').value.trim();
     store.site.logoUrl = $('site-logo').value.trim();
     store.site.banner = { imageUrl: $('banner-img').value.trim(), linkUrl: $('banner-link').value.trim() };
     store.site.homeAds = {
       socialBar: $('ha-social').value.trim(), popunder: $('ha-pop').value.trim(),
       nativeSrc: $('ha-native').value.trim(), nativeContainer: $('ha-nativec').value.trim(),
     };
+    store.site.socialLinks = {
+      discord: $('sl-discord').value.trim(), youtube: $('sl-youtube').value.trim(),
+      facebook: $('sl-facebook').value.trim(), tiktok: $('sl-tiktok').value.trim(),
+    };
+    store.site.shortcuts = [0,1,2,3].map(i => ({
+      imageUrl: ($('sc-img-'+i)||{}).value?.trim() || '',
+      linkUrl: ($('sc-link-'+i)||{}).value?.trim() || '',
+      label: 'ปุ่ม '+(i+1),
+    }));
     saveStore('บันทึกตั้งค่าเว็บแล้ว');
   };
 
