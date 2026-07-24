@@ -119,10 +119,10 @@
       <h3>${esc(p.title)}</h3>
       <div class="desc">${esc(p.description||'')}</div>
       <div class="stock-row"><span class="stock-dot${out?' out':''}"></span>${out?'คีย์หมดสต็อก':'คงเหลือ '+p.remaining}</div>
-      <button class="getkey${out?' off':''}" ${out?'disabled':''}>${out?'หมดสต็อก':'Get Key →'}</button></div>`;
-    if(!out)el.querySelector('.getkey').onclick=()=>{location.href='/'+p.slug;};
+      <button class="getkey">Get Key →</button></div>`;
+    el.querySelector('.getkey').onclick=()=>{location.href='/'+p.slug;};
     return el;
   }
 
-  loadSite().then(()=>{loadProducts();loadStats();});
+  loadSite().then(()=>{loadProducts();});
 })();
